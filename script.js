@@ -5,6 +5,7 @@ const thirdBook = new Book('Inferno', 'Dan Brown', 400, false);
 const library = document.querySelector('.books-container');
 const addBook = document.querySelector('.btn-add-book');
 const displayForm = document.querySelector('.form-container');
+const overlay = document.querySelector('#overlay');
 
 let myLibrary = [firstBook, secondBook, thirdBook];
 
@@ -59,6 +60,15 @@ function displayBook()
         buttonGroup.appendChild(deleteButton);   
     });
 }
+function hideFormAndOverlay(e)
+{
+    if (e.target.className !== 'add-book-form')
+    {
+        displayForm.style.display = 'none';
+        overlay.classList.remove('active');
+    }
+}
 
-addBook.addEventListener('click', () => { displayForm.style.display = "block" })
+addBook.addEventListener('click', () => { displayForm.style.display = "block"; overlay.classList.add('active');})
+overlay.addEventListener('click', hideFormAndOverlay);
 displayBook();
