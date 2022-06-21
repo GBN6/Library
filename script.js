@@ -2,7 +2,9 @@
 const firstBook = new Book('The Witcher', 'Andrzej Sapkowski', 350, true);
 const secondBook = new Book('Game of Thrones', 'G.R.R. Martin', 800, true);
 const thirdBook = new Book('Inferno', 'Dan Brown', 400, false);
-const library = document.querySelector('.book-grid');
+const library = document.querySelector('.books-container');
+const addBook = document.querySelector('.btn-add-book');
+const displayForm = document.querySelector('.form-container');
 
 let myLibrary = [firstBook, secondBook, thirdBook];
 
@@ -58,4 +60,5 @@ function displayBook()
     });
 }
 
+addBook.addEventListener('click', () => { displayForm.style.display = "block" })
 displayBook();

@@ -14,8 +14,24 @@
             <h1>Library</h1>
     </header>
     <main class="main-container">
-        <button class="btn btn-add-book">+ Add book</button>
-        <div class="book-grid">
+
+        <div class="btn-container">
+            <button class="btn btn-add-book">+ Add book</button>
+        </div>
+        <div class="books-container">
+        </div>
+        <div style="display: none;" class="form-container">
+            <form class="add-book-form" action="">
+                <h3>Add new book</h3>
+                <input class="input" type="text" id="title" placeholder="Title" required="" maxlength="100">
+                <input class="input" type="text" id="author" placeholder="Author" required="" maxlength="100">
+                <input class="input" type="number" id="pages" placeholder="Pages" required="" max="10000">
+                <div class="is-read">
+                    <label for="is-read">Have you read it?</label>
+                    <input class="checkbox" type="checkbox" id="isRead">
+                </div>
+                <button class="btn btn-submit-form" type="submit">Submit</button>
+            </form>
         </div>
     </main>
     <footer>
