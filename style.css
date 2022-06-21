@@ -121,7 +121,29 @@ body {
     background-color: #222831;
     color: #EEEEEE;
 }
-
+.main-container .books-container .book-card .btn-card
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+}
+.main-container .books-container .book-card .btn-card .btn-read, .btn-not-read, .btn-delete {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.btn-read {
+    background-color: lightgreen;
+}
+.btn-not-read {
+    background-color: lightcoral;
+}
+.btn-delete {
+    background-color: #a78945;
+}
 
 
 #overlay{

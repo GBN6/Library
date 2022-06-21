@@ -41,8 +41,9 @@ function displayBook()
 
         card.classList.add('book-card');
         card.setAttribute('data-index', `${i}`);
-        (book.read) ? readButton.classList.add('btn-read') : readButton.classList.add('btn-not-read')
-        deleteButton.classList.add('btn-delete')
+        buttonGroup.classList.add('btn', 'btn-card');
+        (book.read) ? readButton.classList.add('btn-read') : readButton.classList.add('btn-not-read');
+        deleteButton.classList.add('btn-delete');
         
         title.textContent = `"${book.title}"`;
         author.textContent = `${book.author}`;
