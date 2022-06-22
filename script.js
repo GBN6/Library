@@ -6,9 +6,11 @@ const library = document.querySelector('.books-container');
 const addBook = document.querySelector('.btn-add-book');
 const displayForm = document.querySelector('.form-container');
 const overlay = document.querySelector('#overlay');
+const submitButton = document.querySelector('.btn-submit-form');
+const bookFromForm = document.querySelector('.add-book-form');
 
-let myLibrary = [firstBook, secondBook, thirdBook];
-
+let myLibrary = [];
+// firstBook, secondBook, thirdBook
 function Book(title, author, pages, read)
 {
     this.title = title;
@@ -24,7 +26,7 @@ function addBookToLibrary(title, author, pages, read)
 {
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
-
+    displayBook();
 }
 
 function displayBook()
@@ -41,9 +43,9 @@ function displayBook()
 
         card.classList.add('book-card');
         card.setAttribute('data-index', `${i}`);
-        buttonGroup.classList.add('btn', 'btn-card');
-        (book.read) ? readButton.classList.add('btn-read') : readButton.classList.add('btn-not-read');
-        deleteButton.classList.add('btn-delete');
+        buttonGroup.classList.add('btn-card');
+        (book.read) ? readButton.classList.add('btn', 'btn-read') : readButton.classList.add('btn', 'btn-not-read');
+        deleteButton.classList.add('btn', 'btn-delete');
         
         title.textContent = `"${book.title}"`;
         author.textContent = `${book.author}`;
@@ -70,6 +72,19 @@ function hideFormAndOverlay(e)
     }
 }
 
+function getBookFromForm(e)
+{
+    e.preventDefault();
+    const title = document.getElementById('title').value
+    const author = document.getElementById('author').value
+    const pages = document.getElementById('pages').value
+    const isRead = document.getElementById('isRead').checked
+    bookFromForm.reset();
+    displayForm.style.display = 'none';
+    overlay.classList.remove('active');
+    return addBookToLibrary(title, author, pages, isRead);
+}
+
 addBook.addEventListener('click', () => { displayForm.style.display = "block"; overlay.classList.add('active');})
 overlay.addEventListener('click', hideFormAndOverlay);
-displayBook();
+bookFromForm.addEventListener('submit', getBookFromForm);
