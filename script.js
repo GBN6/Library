@@ -10,6 +10,7 @@ const submitButton = document.querySelector('.btn-submit-form');
 const bookFromForm = document.querySelector('.add-book-form');
 
 let myLibrary = [];
+let counter = 0
 // firstBook, secondBook, thirdBook
 function Book(title, author, pages, read)
 {
@@ -27,10 +28,15 @@ function addBookToLibrary(title, author, pages, read)
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
     displayBook();
+    
 }
 
 function displayBook()
 {
+    while(library.firstChild)
+    {
+        library.removeChild(library.firstChild);
+    }
     myLibrary.forEach((book, i) => 
     {
         const card = document.createElement('div');
