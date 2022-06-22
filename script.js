@@ -50,7 +50,7 @@ function displayBook()
         card.classList.add('book-card');
         card.setAttribute('data-index', `${i}`);
         buttonGroup.classList.add('btn-card');
-        (book.read) ? readButton.classList.add('btn', 'btn-read') : readButton.classList.add('btn', 'btn-not-read');
+        (book.read) ? readButton.classList.add('btn', 'btn-read', 'btn-read-toggle') : readButton.classList.add('btn', 'btn-not-read', 'btn-read-toggle');
         deleteButton.classList.add('btn', 'btn-delete');
         
         title.textContent = `"${book.title}"`;
@@ -66,7 +66,23 @@ function displayBook()
         card.appendChild(pages);
         card.appendChild(buttonGroup);
         buttonGroup.appendChild(readButton);
-        buttonGroup.appendChild(deleteButton);   
+        buttonGroup.appendChild(deleteButton); 
+
+        readButton.addEventListener('click', (e) => {
+            if (e.target.textContent === 'Read')
+            {
+                myLibrary[i].read = !myLibrary[i].read;
+                e.target.textContent = 'Not read'
+                e.target.className = 'btn-not-read';
+            }
+            else if (e.target.textContent === 'Not read')
+            {
+                myLibrary[i].read = !myLibrary[i].read;
+                e.target.textContent = 'Read'
+                e.target.className = 'btn-read';
+            }
+        })
+        
     });
 }
 function hideFormAndOverlay(e)
