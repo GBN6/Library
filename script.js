@@ -73,13 +73,13 @@ function displayBook()
             {
                 myLibrary[i].read = !myLibrary[i].read;
                 e.target.textContent = 'Not read'
-                e.target.className = 'btn-not-read';
+                e.target.className = 'btn btn-not-read';
             }
             else if (e.target.textContent === 'Not read')
             {
                 myLibrary[i].read = !myLibrary[i].read;
                 e.target.textContent = 'Read'
-                e.target.className = 'btn-read';
+                e.target.className = 'btn btn-read';
             }
         });
 
@@ -87,7 +87,7 @@ function displayBook()
             let cardIndex = document.querySelector(`div[data-index="${i}"]`);
             library.removeChild(cardIndex);
             myLibrary.splice(i, 1);
-            console.log(myLibrary);
+            displayBook();
         })
         
     });
@@ -117,3 +117,4 @@ function getBookFromForm(e)
 addBook.addEventListener('click', () => { displayForm.style.display = "block"; overlay.classList.add('active');})
 overlay.addEventListener('click', hideFormAndOverlay);
 bookFromForm.addEventListener('submit', getBookFromForm);
+displayBook();
