@@ -9,9 +9,15 @@ const overlay = document.querySelector('#overlay');
 const submitButton = document.querySelector('.btn-submit-form');
 const bookFromForm = document.querySelector('.add-book-form');
 
-let myLibrary = [firstBook, secondBook, thirdBook];
-let counter = 0
+let myLibrary = [];
 // firstBook, secondBook, thirdBook
+// Local storage
+if (localStorage.getItem('books') === null) {
+    myLibrary = [];
+  } else {
+    const booksFromStorage = JSON.parse(localStorage.getItem('books'));
+    myLibrary = booksFromStorage;
+  }
 function Book(title, author, pages, read)
 {
     this.title = title;
@@ -23,10 +29,16 @@ function Book(title, author, pages, read)
     }
 }
 
+function saveLocally()
+{
+    localStorage.setItem('books', JSON.stringify(myLibrary));
+}
+
 function addBookToLibrary(title, author, pages, read) 
 {
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
+    saveLocally()
     displayBook();
     
 }
@@ -72,12 +84,14 @@ function displayBook()
             if (e.target.textContent === 'Read')
             {
                 myLibrary[i].read = !myLibrary[i].read;
+                saveLocally()
                 e.target.textContent = 'Not read'
                 e.target.className = 'btn btn-not-read';
             }
             else if (e.target.textContent === 'Not read')
             {
                 myLibrary[i].read = !myLibrary[i].read;
+                saveLocally()
                 e.target.textContent = 'Read'
                 e.target.className = 'btn btn-read';
             }
@@ -87,6 +101,7 @@ function displayBook()
             let cardIndex = document.querySelector(`div[data-index="${i}"]`);
             library.removeChild(cardIndex);
             myLibrary.splice(i, 1);
+            saveLocally()
             displayBook();
         })
         
