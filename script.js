@@ -9,7 +9,7 @@ const overlay = document.querySelector('#overlay');
 const submitButton = document.querySelector('.btn-submit-form');
 const bookFromForm = document.querySelector('.add-book-form');
 
-let myLibrary = [];
+let myLibrary = [firstBook, secondBook, thirdBook];
 let counter = 0
 // firstBook, secondBook, thirdBook
 function Book(title, author, pages, read)
@@ -81,6 +81,13 @@ function displayBook()
                 e.target.textContent = 'Read'
                 e.target.className = 'btn-read';
             }
+        });
+
+        deleteButton.addEventListener('click', (e) => {
+            let cardIndex = document.querySelector(`div[data-index="${i}"]`);
+            library.removeChild(cardIndex);
+            myLibrary.splice(i, 1);
+            console.log(myLibrary);
         })
         
     });
