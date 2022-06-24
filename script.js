@@ -132,4 +132,3 @@ function getBookFromForm(e)
 addBook.addEventListener('click', () => { displayForm.style.display = "block"; overlay.classList.add('active');})
 overlay.addEventListener('click', hideFormAndOverlay);
 bookFromForm.addEventListener('submit', getBookFromForm);
-displayBook();
