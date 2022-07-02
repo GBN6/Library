@@ -112,6 +112,7 @@ function displayBook()
         
     });
 }
+
 function hideFormAndOverlay(e)
 {
     if (e.target.className !== 'add-book-form')
@@ -133,6 +134,7 @@ function getBookFromForm(e)
     overlay.classList.remove('active');
     return addBookToLibrary(title, author, pages, isRead);
 }
+
 displayBook();
 addBook.addEventListener('click', () => { displayForm.style.display = "block"; overlay.classList.add('active');})
 overlay.addEventListener('click', hideFormAndOverlay);
