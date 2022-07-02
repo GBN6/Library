@@ -1,13 +1,26 @@
 
-const firstBook = new Book('The Witcher', 'Andrzej Sapkowski', 350, true);
-const secondBook = new Book('Game of Thrones', 'G.R.R. Martin', 800, true);
-const thirdBook = new Book('Inferno', 'Dan Brown', 400, false);
+// const firstBook = new Book('The Witcher', 'Andrzej Sapkowski', 350, true);
+// const secondBook = new Book('Game of Thrones', 'G.R.R. Martin', 800, true);
+// const thirdBook = new Book('Inferno', 'Dan Brown', 400, false);
 const library = document.querySelector('.books-container');
 const addBook = document.querySelector('.btn-add-book');
 const displayForm = document.querySelector('.form-container');
 const overlay = document.querySelector('#overlay');
 const submitButton = document.querySelector('.btn-submit-form');
 const bookFromForm = document.querySelector('.add-book-form');
+
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    info() {
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}.`;
+    }
+}
 
 let myLibrary = [];
 // firstBook, secondBook, thirdBook
@@ -18,16 +31,8 @@ if (localStorage.getItem('books') === null) {
     const booksFromStorage = JSON.parse(localStorage.getItem('books'));
     myLibrary = booksFromStorage;
   }
-function Book(title, author, pages, read)
-{
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.info = function () {
-        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}.`;
-    }
-}
+
+
 
 function saveLocally()
 {
@@ -128,7 +133,7 @@ function getBookFromForm(e)
     overlay.classList.remove('active');
     return addBookToLibrary(title, author, pages, isRead);
 }
-
+displayBook();
 addBook.addEventListener('click', () => { displayForm.style.display = "block"; overlay.classList.add('active');})
 overlay.addEventListener('click', hideFormAndOverlay);
 bookFromForm.addEventListener('submit', getBookFromForm);
